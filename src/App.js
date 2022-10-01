@@ -29,7 +29,7 @@ function App() {
 
   const updateInput = (e) => {
     const name = e.target.name;
-    const value = Number(e.target.value);
+    const value = Number(e.target.value.replace(/\s/g, ""));
     const min = e.target.min;
     const max = e.target.max;
 
@@ -50,9 +50,10 @@ function App() {
 
   const handleBlur = (e) => {
     const name = e.target.name;
-    let value = Number(e.target.value);
+    let value = Number(e.target.value.replace(/\s/g, ""));
     const min = e.target.min;
     const max = e.target.max;
+    console.log(min, max);
     if (name === "price") {
       if (value < min) value = minPrice;
       if (value > max) value = maxPrice;
@@ -104,7 +105,7 @@ function App() {
           ЕжемесячныйПлатеж: monthPay,
         }),
       });
-      let resJson = await res.json();
+      // let resJson = await res.json();
       if (res.status === 200) {
         console.log("fetch success");
         setFetching(false);
@@ -117,6 +118,10 @@ function App() {
     } catch (err) {
       console.log("CAUGHT ERROR: ", err);
     }
+  };
+
+  const formatNumber = (value) => {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
 
   return (
@@ -137,10 +142,10 @@ function App() {
                   <div className="input-container">
                     <h2 className="input-heading">
                       <input
-                        type="number"
+                        type="text"
                         id="price"
                         name="price"
-                        value={price}
+                        value={formatNumber(price)}
                         min={minPrice}
                         max={maxPrice}
                         onChange={updateInput}
@@ -168,15 +173,17 @@ function App() {
                 <label htmlFor="initial">Первоначальный взнос</label>
                 <div>
                   <div className="input-container">
-                    <h2 className="rubles initial-rubles">{`${initialRubles} ₽`}</h2>
+                    <h2 className="rubles initial-rubles">{`${formatNumber(
+                      initialRubles
+                    )} ₽`}</h2>
                     <div className="percentage-bg">
                       <div className="percentage-container">
                         <h2 className="input-heading">
                           <input
-                            type="number"
+                            type="text"
                             id="initial"
                             name="initial"
-                            value={initial}
+                            value={formatNumber(initial)}
                             min={minInitial}
                             max={maxInitial}
                             onChange={updateInput}
@@ -210,10 +217,10 @@ function App() {
                   <div className="input-container">
                     <h2 className="input-heading">
                       <input
-                        type="number"
+                        type="text"
                         id="months"
                         name="months"
-                        value={months}
+                        value={formatNumber(months)}
                         min={minMonths}
                         max={maxMonths}
                         onChange={updateInput}
@@ -240,15 +247,11 @@ function App() {
               <div className="metadata">
                 <div className={`contract-sum ${fetching ? "disabled" : ""}`}>
                   <p>Сумма договора лизинга</p>
-                  <h2 className="value">{`${contractSum
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`}</h2>
+                  <h2 className="value">{`${formatNumber(contractSum)} ₽`}</h2>
                 </div>
                 <div className={`month-pay  ${fetching ? "disabled" : ""}`}>
                   <p>Ежемесячный платеж от</p>
-                  <h2 className="value">{`${monthPay
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`}</h2>
+                  <h2 className="value">{`${formatNumber(monthPay)} ₽`}</h2>
                 </div>
               </div>
               <button type="submit" form="form" value="Submit">
