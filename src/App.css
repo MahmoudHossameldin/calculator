@@ -1,38 +1,393 @@
+/* ========== DEFAULTS ========== */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+p,
+li,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+
+button:focus,
+a:focus,
+input {
+  outline: none;
+  border: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ========== FONTS ========== */
+@font-face {
+  font-family: "Gilroy"; /*Can be any text*/
+  src: local("Gilroy-Regular"),
+    url("./fonts/Gilroy/Gilroy-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nekst"; /*Can be any text*/
+  src: local("Nekst-Black"),
+    url("./fonts/Nekst/Nekst-Black.ttf") format("truetype");
+}
+
+/* ========== STYLES ========== */
 .App {
-  text-align: center;
+  margin: 4.4rem 6.25% 6.4rem;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-heading {
+  font-family: "Nekst";
+  font-weight: 900;
+  font-size: 3.4rem;
+  line-height: 3.06rem;
+  color: #111111;
+  margin-bottom: 3.2rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.field {
+  /* height: 9.6rem; */
+  overflow: hidden;
+  width: 100%;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.field:not(:first-child) {
+  margin-top: 0.18rem;
+}
+.input-container {
   display: flex;
-  flex-direction: column;
+  height: 2rem;
   align-items: center;
+}
+label {
+  color: #333e48;
+  font-family: "Gilroy";
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+}
+.metadata p {
+  color: #333333;
+  font-family: "Gilroy";
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+}
+.field > div {
+  background-color: #f3f3f4;
+  padding: 2rem;
+  border-radius: 1.6rem;
+  margin-top: 0.8rem;
+}
+.field > div:focus-within {
+  background-color: #fff;
+  border: #f3f3f4 solid 0.2rem;
+  border-radius: 1.6rem;
+}
+.percentage-bg:focus-within {
+  background-color: #fff;
+}
+input,
+.rubles,
+.months,
+.sum,
+.value {
+  background-color: unset;
+  color: #333e48;
+  font-family: "Nekst";
+  font-weight: 900;
+  font-size: 2.2rem;
+  line-height: 2rem;
+  border: none;
+}
+.input-heading {
+  flex-grow: 1;
+}
+input {
+  width: 100%;
+}
+.price-rubles,
+.months {
+  margin-left: auto;
+}
+.percentage {
+  color: #333e48;
+  font-family: "Nekst";
+  font-weight: 900;
+  font-size: 2.2rem;
+  line-height: 2rem;
+}
+.second-field input:first-child {
+  text-align: right;
+  width: 2.6rem;
+  height: 2rem;
+}
+.percentage-bg {
+  margin-left: auto;
+  background-color: rgba(224, 224, 224, 0.4);
+  width: 6.7rem;
+  height: 4.8rem;
+  border-radius: 1.2rem;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transform: translateX(1.4rem);
+}
+.percentage-container {
+  display: flex;
+  align-items: center;
+}
+.value {
+  margin-top: 0.2rem;
+}
+.month-pay {
+  margin-top: 2.9rem;
+}
+button h2 {
+  font-family: "Nekst";
+  font-weight: 900;
+  font-size: 2.2rem;
+  line-height: 2rem;
+  color: #ffffff;
+}
+button {
+  background-color: #ff9514;
+  border-radius: 4rem;
+  padding: 0.7rem 1.6rem 1.1rem;
+  border: none;
+  width: 100%;
+  height: 6rem;
+  margin-top: 3.2rem;
+}
+button:hover {
+  background-color: #111111;
+}
+button:active {
+  background-color: #575757;
+}
+/* =============== SLIDERS =============== */
+/* 46
+   0
+   100
+   */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: calc(100% - 4rem);
+  height: 0.2rem;
+  background-color: #e1e1e1;
+  transform: translate(2rem, -1.8rem);
+  background-image: linear-gradient(#ff9514, #ff9514);
+  background-repeat: no-repeat;
+}
+.field > div:hover + input[type="range"] {
+  height: 0.1rem;
 }
 
-.App-link {
-  color: #61dafb;
+/* Input Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background: #ff9514;
+  cursor: ew-resize;
 }
 
-@keyframes App-logo-spin {
-  from {
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background: #ff9514;
+  cursor: ew-resize;
+}
+
+input[type="range"]::-ms-thumb {
+  -webkit-appearance: none;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background: #ff9514;
+  cursor: ew-resize;
+}
+/* Input Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type="range"]::-moz-range-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type="range"]::-ms-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+.disabled {
+  opacity: 0.4;
+}
+/* Loader */
+.loader {
+  margin: 0 auto;
+  border: 0.2rem solid transparent;
+  border-radius: 50%;
+  border-top: 0.2rem solid #ffffff;
+  border-right: 0.2rem solid #ffffff;
+  border-bottom: 0.2rem solid #ffffff;
+  width: 2.1rem;
+  height: 2.1rem;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .App {
+    margin: 6.4rem 5% 15.6rem;
+  }
+  .app-heading {
+    font-size: 5.4rem;
+    line-height: 4.86rem;
+    margin-bottom: 4.4rem;
+  }
+  label {
+    color: #575757;
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+  .field > div {
+    margin-top: 2.4rem;
+    height: 6.8rem;
+    display: grid;
+    align-items: center;
+    padding: 1.6rem 2.4rem;
+  }
+  .field:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+  input,
+  .rubles,
+  .months {
+    color: #575757;
+    font-size: 3rem;
+    line-height: 3.6rem;
+  }
+  .percentage-bg input,
+  .percentage {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+  .metadata {
+    margin-top: 2.8rem;
+    display: flex;
+    gap: 12.3%;
+  }
+  .metadata p {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+  .value {
+    margin-top: 0.8rem;
+    font-size: 5.4rem;
+    line-height: 4.86rem;
+  }
+  .month-pay {
+    margin-top: 0;
+  }
+  button {
+    margin-top: 4.4rem;
+    width: 34.5rem;
+    height: 6.8rem;
+  }
+  button h2 {
+    font-size: 3rem;
+    line-height: 3.6rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .App {
+    margin: 10rem 5% 12rem;
+  }
+  .metadata {
+    margin-top: 3.7rem;
+    gap: 21.8%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .App {
+    max-width: 134.5rem;
+    margin: 21.3rem auto 21.6rem;
+  }
+  .app-heading {
+    max-width: 75.3rem;
+    margin-bottom: 3.2rem;
+  }
+  .input-fields {
+    display: flex;
+    justify-content: space-between;
+  }
+  .input-fields .field {
+    width: 42.7rem;
+    margin-top: 0;
+  }
+  .form-footer {
+    display: flex;
+  }
+  button {
+    margin: 0;
+    width: 42.6rem;
+    margin-top: 4.4rem;
+  }
+  .metadata {
+    flex-grow: 1;
+    /* gap: 18.47%; */
+    gap: 0;
+    margin: 0;
+    margin-top: 3.4rem;
+  }
+  .metadata > div {
+    width: 50%;
   }
 }
