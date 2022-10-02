@@ -220,6 +220,7 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: #ff9514;
   cursor: ew-resize;
+  border: none;
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -239,6 +240,7 @@ input[type="range"]::-ms-thumb {
   border-radius: 50%;
   background: #ff9514;
   cursor: ew-resize;
+  border: none;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
@@ -263,6 +265,11 @@ input[type="range"]::-ms-track {
 }
 .disabled {
   opacity: 0.4;
+}
+.disabled:hover,
+.disabled:hover *,
+.disabled input:hover {
+  cursor: no-drop;
 }
 /* Loader */
 .loader {
