@@ -1,0 +1,65 @@
+/* === DONE === */
+1. The Title and Description tags should appear immediately after the opening head tag. Any value can be entered.
+/* === DONE === */
+
+/* === DONE === */
+2. Move all the styles that are used in the layout into separate CSS files.
+/* === DONE === */
+
+/* === DONE === */
+4. Avoid conflicting CSS styles.
+/* === DONE === */
+
+
+3. Achieve cross-browser compatibility: Google Chrome, Android, mobile safari, Yandex browser, Firefox, Opera.
+
+5. Get validated https://validator.w3.org/. This is not a critical requirement, but there should be no elementary layout errors (for example, unclosed tags, omission of required attributes, etc.).
+
+If something insignificant is not reflected in the layouts, do it at your own discretion and write a comment when submitting the assignment.
+
+---------------------------------------------------------
+/* === DONE === */
+1. The calculator must initialize with the specified defaults;
+/* === DONE === */
+
+/* === DONE === */
+2. In each field, you can enter a value both from the keyboard and using the slider;
+/* === DONE === */
+
+/* === DONE === */
+3. When choosing a value using the slider, all numbers must be recalculated dynamically while the slider is moving, and not just after it stops;
+/* === DONE === */
+
+/* === DONE === */
+4. Each field has a maximum and minimum value - the slider should limit the user in choosing data, and when an incorrect value is entered from the keyboard, it should be reset to the nearest correct number (maximum or minimum).
+/* === DONE === */
+/* === DONE === */
+          4.1. For the field “Стоимость автомобиля” of the border: 1 million rubles. - 6 million rubles;
+          4.2. For the “Первоначальный взнос” field, the borders are: 10% - 60% (here the entry is made exactly as a percentage of the Стоимость, and not in rubles; rubles are the result of the calculation from the entered car cost);
+          4.3. For the field “Срок лизинга” the boundaries are 1 - 60 months;
+/* === DONE === */
+
+/* === DONE === */
+5. Formulas: check task!!!!!!
+          5.1. check task!!!!!!
+          5.2. check task!!!!!!
+          5.3. check task!!!!!!
+          5.4. check task!!!!!!
+/* === DONE === */
+
+/* === DONE === */
+6. By clicking the “Оформить заявку” button, a request should be generated that sends all the calculator data to an HTTP request
+          
+URL: https://eoj3r7f3r4ef6v4.m.pipedream.net
+Method: POST
+Content-Type: application/json
+All form data should be sent in JSON format in the request body
+/* === DONE === */
+
+/* === DONE === */
+At the moment of clicking on the button, the button should be blocked from the possibility of re-sending data for the duration of the request to the backend.
+/* === DONE === */
+
+/* === DONE === */
+Please note that the buttons have several additional states, in addition to the standard ones (these are disabled and loading) - they also need to be implemented (for example, show a button with loading in one slider after clicking, and on the other a button in the disabled state) . All field validation states are also reflected in layouts.
+/* === DONE === */

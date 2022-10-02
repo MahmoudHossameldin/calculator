@@ -188,14 +188,18 @@ button {
 button:hover {
   background-color: #111111;
 }
+button.loading {
+  background-color: #ff9514;
+}
 button:active {
   background-color: #575757;
 }
+button:disabled,
+button[disabled] {
+  cursor: no-drop;
+}
 /* =============== SLIDERS =============== */
-/* 46
-   0
-   100
-   */
+
 input[type="range"] {
   -webkit-appearance: none;
   width: calc(100% - 4rem);
@@ -209,7 +213,6 @@ input[type="range"] {
   height: 0.1rem;
 }
 
-/* Input Thumb */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 2rem;
@@ -226,6 +229,7 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   background: #ff9514;
   cursor: ew-resize;
+  border: none;
 }
 
 input[type="range"]::-ms-thumb {
@@ -236,7 +240,7 @@ input[type="range"]::-ms-thumb {
   background: #ff9514;
   cursor: ew-resize;
 }
-/* Input Track */
+
 input[type="range"]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   box-shadow: none;
@@ -294,6 +298,7 @@ input[type="range"]::-ms-track {
     color: #575757;
     font-size: 1.6rem;
     line-height: 2rem;
+    cursor: pointer;
   }
   .field > div {
     margin-top: 2.4rem;
@@ -338,6 +343,7 @@ input[type="range"]::-ms-track {
     margin-top: 4.4rem;
     width: 34.5rem;
     height: 6.8rem;
+    cursor: pointer;
   }
   button h2 {
     font-size: 3rem;

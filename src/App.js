@@ -4,6 +4,8 @@ import "./fonts/Gilroy/Gilroy-Regular.ttf";
 import "./fonts/Nekst/Nekst-Black.ttf";
 
 function App() {
+  // Initiate all states and set default values
+
   // Стоимость автомобиля
   const defaultPrice = 3300000;
   const [price, setPrice] = useState(defaultPrice);
@@ -14,7 +16,11 @@ function App() {
   const defaultMonths = 60;
   const [months, setMonths] = useState(defaultMonths);
 
+  // Check if POST request is being proccessed
   const [fetching, setFetching] = useState(false);
+  // Check if slider is clicked so as to change button style
+  const [contractSumClicked, setContractSumClicked] = useState(false);
+  const [monthPayClicked, setMonthPayClicked] = useState(false);
 
   // Первоначальный взнос в рублях
   const initialRubles = Math.round((initial / 100) * price);
@@ -27,6 +33,7 @@ function App() {
   // Сумма договора лизинга
   const contractSum = initial * months * monthPay;
 
+  // пересчитывать все числа
   const updateInput = (e) => {
     const name = e.target.name;
     const value = Number(e.target.value.replace(/\s/g, ""));
@@ -37,10 +44,12 @@ function App() {
     if (name === "initial") setInitial(value);
     if (name === "months") setMonths(value);
 
+    // Update background-size property for the filled part of the slider
     e.target.style.backgroundSize =
       ((value - min) * 100) / (max - min) + "% 100%";
   };
 
+  //Get min and max values
   const minPrice = 1000000;
   const maxPrice = 6000000;
   const minInitial = 10;
@@ -48,29 +57,7 @@ function App() {
   const minMonths = 1;
   const maxMonths = 60;
 
-  const handleBlur = (e) => {
-    const name = e.target.name;
-    let value = Number(e.target.value.replace(/\s/g, ""));
-    const min = e.target.min;
-    const max = e.target.max;
-    console.log(min, max);
-    if (name === "price") {
-      if (value < min) value = minPrice;
-      if (value > max) value = maxPrice;
-      setPrice(value);
-    }
-    if (name === "initial") {
-      if (value < min) value = minInitial;
-      if (value > max) value = maxInitial;
-      setInitial(value);
-    }
-    if (name === "months") {
-      if (value < min) value = minMonths;
-      if (value > max) value = maxMonths;
-      setMonths(value);
-    }
-  };
-
+  // Set background-size property for the filled part of the slider
   const priceBgSize = {
     backgroundSize: `${
       ((price - minPrice) * 100) / (maxPrice - minPrice)
@@ -85,6 +72,25 @@ function App() {
     backgroundSize: `${
       ((months - minMonths) * 100) / (maxMonths - minMonths)
     }% 100%`,
+  };
+
+  // ограничивать пользователя в выборе данных, при вводе некорректного значения с клавиатуры, сбрасываться к ближайшему корректному числу (максимуму или минимуму)
+  const handleBlur = (e) => {
+    const name = e.target.name;
+    let value = Number(e.target.value.replace(/\s/g, ""));
+    const min = e.target.min;
+    const max = e.target.max;
+
+    if (value < min) {
+      if (name === "price") setPrice(minPrice);
+      if (name === "initial") setPrice(minInitial);
+      if (name === "months") setPrice(minMonths);
+    }
+    if (value > max) {
+      if (name === "price") setPrice(maxPrice);
+      if (name === "initial") setPrice(maxInitial);
+      if (name === "months") setPrice(maxMonths);
+    }
   };
 
   let handleSubmit = async (e) => {
@@ -120,8 +126,26 @@ function App() {
     }
   };
 
+  const changeBtnStyle = (name) => {
+    console.log(name);
+    if (name === "sum" && monthPayClicked === false)
+      setContractSumClicked(true);
+    if (name === "mpay" && contractSumClicked === false)
+      setMonthPayClicked(true);
+
+    setTimeout(() => {
+      setContractSumClicked(false);
+      setMonthPayClicked(false);
+    }, 1500);
+  };
+
   const formatNumber = (value) => {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
+  const printBtnTest = () => {
+    if (fetching || contractSumClicked) return "";
+    return "Оставить заявку";
   };
 
   return (
@@ -166,6 +190,7 @@ function App() {
                   onChange={updateInput}
                 ></input>
               </div>
+              {/* END FIRST FIELD */}
               {/* SECOND FIELD */}
               <div
                 className={`field second-field ${fetching ? "disabled" : ""}`}
@@ -195,7 +220,6 @@ function App() {
                     </div>
                   </div>
                 </div>
-
                 <input
                   type="range"
                   name="initial"
@@ -245,19 +269,37 @@ function App() {
             </div>
             <div className="form-footer">
               <div className="metadata">
-                <div className={`contract-sum ${fetching ? "disabled" : ""}`}>
+                <div
+                  className={`contract-sum ${fetching ? "disabled" : ""}`}
+                  onClick={() => changeBtnStyle("sum")}
+                >
                   <p>Сумма договора лизинга</p>
                   <h2 className="value">{`${formatNumber(contractSum)} ₽`}</h2>
                 </div>
-                <div className={`month-pay  ${fetching ? "disabled" : ""}`}>
+                <div
+                  className={`month-pay  ${fetching ? "disabled" : ""}`}
+                  onClick={() => changeBtnStyle("mpay")}
+                >
                   <p>Ежемесячный платеж от</p>
                   <h2 className="value">{`${formatNumber(monthPay)} ₽`}</h2>
                 </div>
               </div>
-              <button type="submit" form="form" value="Submit">
-                <h2 className={`${fetching ? "loader" : ""}`}>{`${
-                  fetching ? "" : "Оставить заявку"
-                }`}</h2>
+              <button
+                type="submit"
+                form="form"
+                value="Submit"
+                className={`${fetching ? "loading" : ""} ${
+                  contractSumClicked ? "loading" : ""
+                } ${monthPayClicked ? "disabled" : ""}`}
+                disabled={fetching}
+              >
+                <h2
+                  className={`${fetching ? "loader" : ""} ${
+                    contractSumClicked ? "loader" : ""
+                  }`}
+                >
+                  {printBtnTest()}
+                </h2>
               </button>
             </div>
           </form>
