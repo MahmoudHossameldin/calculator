@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import "./fonts/Gilroy/Gilroy-Regular.ttf";
 import "./fonts/Nekst/Nekst-Black.ttf";
-import formatNumber from "./utils/formatNumber";
 import Button from "./components/Button";
 import Heading from "./components/Heading";
 import Price from "./components/Price";
