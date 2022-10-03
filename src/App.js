@@ -73,13 +73,13 @@ function App() {
 
     if (value < min) {
       if (name === "price") setPrice(minPrice);
-      if (name === "initial") setPrice(minInitial);
-      if (name === "months") setPrice(minMonths);
+      if (name === "initial") setInitial(minInitial);
+      if (name === "months") setMonths(minMonths);
     }
     if (value > max) {
       if (name === "price") setPrice(maxPrice);
-      if (name === "initial") setPrice(maxInitial);
-      if (name === "months") setPrice(maxMonths);
+      if (name === "initial") setInitial(maxInitial);
+      if (name === "months") setMonths(maxMonths);
     }
   };
 

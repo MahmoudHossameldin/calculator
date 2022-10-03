@@ -20,14 +20,22 @@ export default function Metadata(props) {
         onClick={() => changeBtnStyle("sum")}
       >
         <p>Сумма договора лизинга</p>
-        <h2 className="value">{`${formatNumber(props.contractSum)} ₽`}</h2>
+        <h2 className="value">{`${
+          Number.isFinite(props.contractSum)
+            ? formatNumber(props.contractSum)
+            : "Пожалуйста, добавьте правильный срок"
+        } ₽`}</h2>
       </div>
       <div
         className={`month-pay  ${props.fetching ? "disabled" : ""}`}
         onClick={() => changeBtnStyle("mpay")}
       >
         <p>Ежемесячный платеж от</p>
-        <h2 className="value">{`${formatNumber(props.monthPay)} ₽`}</h2>
+        <h2 className="value">{`${
+          Number.isFinite(props.monthPay)
+            ? formatNumber(props.monthPay)
+            : "Пожалуйста, добавьте правильный срок"
+        } ₽`}</h2>
       </div>
     </div>
   );
