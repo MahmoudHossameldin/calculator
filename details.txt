@@ -10,12 +10,15 @@
 4. Avoid conflicting CSS styles.
 /* === DONE === */
 
-
+/* === DONE === */
 3. Achieve cross-browser compatibility: Google Chrome, Android, mobile safari, Yandex browser, Firefox, Opera.
+/* === DONE === */
 
+/* === DONE === */
 5. Get validated https://validator.w3.org/. This is not a critical requirement, but there should be no elementary layout errors (for example, unclosed tags, omission of required attributes, etc.).
 
 If something insignificant is not reflected in the layouts, do it at your own discretion and write a comment when submitting the assignment.
+/* === DONE === */
 
 ---------------------------------------------------------
 /* === DONE === */
@@ -33,6 +36,7 @@ If something insignificant is not reflected in the layouts, do it at your own di
 /* === DONE === */
 4. Each field has a maximum and minimum value - the slider should limit the user in choosing data, and when an incorrect value is entered from the keyboard, it should be reset to the nearest correct number (maximum or minimum).
 /* === DONE === */
+
 /* === DONE === */
           4.1. For the field “Стоимость автомобиля” of the border: 1 million rubles. - 6 million rubles;
           4.2. For the “Первоначальный взнос” field, the borders are: 10% - 60% (here the entry is made exactly as a percentage of the Стоимость, and not in rubles; rubles are the result of the calculation from the entered car cost);

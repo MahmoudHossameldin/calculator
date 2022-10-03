@@ -120,9 +120,11 @@ function App() {
         setMonths(defaultMonths);
       } else {
         console.log("Error sending data!!!");
+        setFetching(false);
       }
     } catch (err) {
       console.log("CAUGHT ERROR: ", err);
+      setFetching(false);
     }
   };
 

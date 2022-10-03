@@ -63,6 +63,11 @@ input[type="number"] {
     url("./fonts/Nekst/Nekst-Black.ttf") format("truetype");
 }
 
+/* Variables */
+:root {
+  --orange: #ff9514;
+}
+
 /* ========== STYLES ========== */
 .App {
   margin: 4.4rem 6.25% 6.4rem;
@@ -177,7 +182,7 @@ button h2 {
   color: #ffffff;
 }
 button {
-  background-color: #ff9514;
+  background-color: var(--orange);
   border-radius: 4rem;
   padding: 0.7rem 1.6rem 1.1rem;
   border: none;
@@ -189,7 +194,7 @@ button:hover {
   background-color: #111111;
 }
 button.loading {
-  background-color: #ff9514;
+  background-color: var(--orange);
 }
 button:active {
   background-color: #575757;
@@ -206,7 +211,7 @@ input[type="range"] {
   height: 0.2rem;
   background-color: #e1e1e1;
   transform: translate(2rem, -1.8rem);
-  background-image: linear-gradient(#ff9514, #ff9514);
+  background-image: linear-gradient(var(--orange), var(--orange));
   background-repeat: no-repeat;
 }
 .field > div:hover + input[type="range"] {
@@ -218,7 +223,7 @@ input[type="range"]::-webkit-slider-thumb {
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
-  background: #ff9514;
+  background: var(--orange);
   cursor: ew-resize;
   border: none;
 }
@@ -228,7 +233,7 @@ input[type="range"]::-moz-range-thumb {
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
-  background: #ff9514;
+  background: var(--orange);
   cursor: ew-resize;
   border: none;
 }
@@ -238,7 +243,7 @@ input[type="range"]::-ms-thumb {
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
-  background: #ff9514;
+  background: var(--orange);
   cursor: ew-resize;
   border: none;
 }
